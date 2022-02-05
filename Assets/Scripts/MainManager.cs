@@ -22,6 +22,10 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("score:"+DataManager.Instance.score);
+        m_Points = DataManager.Instance.score;
+        AddPoint(0);
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -57,6 +61,8 @@ public class MainManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                DataManager.Instance.score = m_Points;
+                DataManager.Instance.Save();
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
